@@ -1,3 +1,6 @@
 env/
 
 Systems_assignment.pdfZone.Identifier
+
+__pycache__/
+*.py[cod]
