@@ -1,0 +1,5 @@
+My design implements a robust hybrid Forward Error Correction (FEC) and Automatic Repeat reQuest (ARQ) system. The sender generates an XOR parity packet for every two data frames to allow instant recovery of single dropped packets at the receiver. For unrecoverable gaps or burst losses, the receiver leverages a strict deadline-aware event loop to actively send NACKs back to the sender. The sender maintains a rolling buffer of the last 128 frames to fulfill these retransmission requests. To handle high-variance environments, the ARQ logic aggressively retries NACKs with a 40ms cooldown, maximizing recovery chances while remaining under the 2.0x bandwidth cap. 
+
+My implementation should be graded at **delay_ms = 100**, as it has been tuned to pass both Profile A and Profile B at this threshold. 
+
+This design will break if continuous burst losses exceed the 128-frame retransmit window, which is roughly 2.5 seconds of media. It will also fail if network delays consistently spike above 100ms, because the round-trip time would prevent ARQ retransmissions from arriving before the strict playout deadline.
