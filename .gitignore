@@ -1,6 +1,16 @@
 env/
 
-Systems_assignment.pdfZone.Identifier
+*.Identifier
 
 __pycache__/
 *.py[cod]
+
+# Compiled binaries
+systems_handout/sender
+systems_handout/receiver
+
+# C artifacts
+*.o
+*.out
+
+common.pyZone.Identifier
